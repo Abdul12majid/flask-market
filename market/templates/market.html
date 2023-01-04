@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Market page
+{% endblock %}
+
+{% block content %}
+
+{% for messages in get_flashed_messages() %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{messages}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+
+
+<div class="row" style="margin-top:20px; margin-left:20px">
+	<div class="col-8">
+		<h2> Available item on the market </h2>
+		</br>
+		<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <!-- Your Columns HERE -->
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Barcode</th>
+            <th scope="col">Price</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Your rows inside the table HERE: -->
+        	{% for item in all_item %}
+            {% include 'includes/item_modal.html' %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name_db }}</td>
+                <td>{{ item.barcode_db }}</td>
+                <td>${{ item.price_db }}</td>
+                <td>
+                	
+                	<button class="btn btn-outline btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal-{{item.id}}">More info</button>
+                <button class="btn btn-outline btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#ConfirmPurchase-{{item.id}}">Purchase</button>
+                </td>
+            </tr>
+            {% endfor %}
+    </tbody>
+</table>
+    </div> </br></br>
+    
+<div class="col-4">
+<h2> owned item </h2>
+<p> Click on item to put back in the market </p>
+<br/>
+<div class="row">
+	{% for item in owned_item %}
+	<div class = "col-md-6">
+		<div style="margin-bottom:5px" class="card text-center bg-dark">
+			<div class="card-body">
+				<h5 class="card-title"> Card Title </h5>ffff
+				<button type="button" class="btn btn-outline-danger" style="margin-bottom:5px" data-bs-toggle="modal" data-bs-target="#fjfjfffjfj">Sell this item</button>
+				<p class="card-text"><strong>Additional Text</strong></p>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+</div>
+
+
+
+{% endblock %}
+

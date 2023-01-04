@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login page
+{% endblock %}
+
+{% block content %}
+
+{% for messages in get_flashed_messages() %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{messages}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<body class="text-center">
+<h1> Login </h1>
+<div class="container">
+<br/>
+<form method="POST" class="form-register" style="color:white">
+	<img class="mb-4" src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fd3ui957tjb5bqd.cloudfront.net%2Fuploads%2F2017%2F01%2FSwan-by-Yuri-Kartashev-560x420.jpg&imgrefurl=https%3A%2F%2Fcreativemarket.com%2Fblog%2Flogo-design-ideas&tbnid=SzpFajXBaUNT0M&vet=12ahUKEwj939jQ0KP8AhVaU6QEHR-XB0YQMygQegUIARD7AQ..i&docid=1Wiak0AZEe0fDM&w=560&h=420&q=logo%20design%20ideas&hl=en&client=ms-android-vivo-rvo2&ved=2ahUKEwj939jQ0KP8AhVaU6QEHR-XB0YQMygQegUIARD7AQ" alt="">
+	<br/>
+	
+	{{form.hidden_tag()}}
+	<b>{{form.username.label(class="form-label")}}</b>
+	{{form.username(class="form-control", placeholder="username:-")}}
+	<b>{{form.password.label(class="form-label")}}</b>
+	{{form.password(class="form-control", placeholder="password:-")}}<br/>
+	{{form.submit(class="btn btn-secondary btn-sm")}}
+</form></br>
+
+<div class="checkbox mb-3">
+    <b> Don't have an account ? </b></br>
+    <a class="btn btn-sm btn-primary" href="{{url_for('register')}}"> Sign up </a>
+</div>
+
+</div>
+</body>
+
+{% endblock %}

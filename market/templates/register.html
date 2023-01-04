@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register page
+{% endblock %}
+
+{% block content %}
+
+{% for messages in get_flashed_messages() %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{messages}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<body class="text-center">
+<h1> Create Your Accout </h1>
+<div class="container">
+<br/>
+<form method="POST" class="form-register" style="color:white">
+	<img class="mb-4" src="https://res.cloudinary.com/jimshapedcoding/image/upload/v1597332609/android-icon-192x192_ove2a7.png" alt="">
+	<br/>
+	
+	{{form.hidden_tag()}}
+	{{form.username.label(class="form-label")}}
+	{{form.username(class="form-control")}}
+	{{form.email.label(class="form-label")}}
+	{{form.email(class="form-control")}}
+	{{form.password.label(class="form-label")}}
+	{{form.password(class="form-control")}}
+	{{form.password2.label(class="form-label")}}
+	{{form.password2(class="form-control")}}<br/>
+	{{form.submit(class="btn btn-secondary btn-sm")}}
+</form><br/>
+<div class="checkbox mb-3">
+    <b> Already have an account ? </b></br>
+    <a class="btn btn-sm btn-primary" href="{{url_for('login')}}"> Login </a>
+</div>
+</div>
+</body>
+
+{% endblock %}
